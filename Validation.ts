@@ -1,17 +1,3 @@
-// Dokumentácia:
-
-//  Pripojenie:
-//    Na <input/> nastav data-validation="true" a data-validation-group="{{názov grupy inputs & buttons}}".
-//    Daleje je nutne prida data-validation-group="{{názov grúpy}}" aspon pre jeden <button></button>.
-//    Do <body></body> pridaj <div data-validation-for="{{id validovaného inputu}}"></div> a v tvojom main.js súbore, 
-//    vytvor instanciu Validation.ts(staèí jedena na celú page) a zavolaj initialize().
-
-//  Ako to funguje:
-//    Po spusteni initialize() sa skontroluje ci na stranke existuje aspon jeden element z atributon data-validation="true".
-//    Ak áno, tak sa skontroluje validita nastavení(kadı input musi byt v grupe z aspon jednim buttnom) a ak je vsetko v poriadku,
-//    tak pre kazdy input sa nastavy event change. Pri odpaleni eventu sa skontroluje validita inputu(cez prehliadac a klasicke HTML atributy)
-//    a podla vysledku sa zobrazí v tele DIVu pre feedback odpovedajuca hláška(dodana prehliadacom) + button grupy sa bud zablokuje alebo sprístupn pre akciu(disabled).
-
 class Validation {
   private readonly ENV_DATA_VALIDATION_GROUP = 'data-validation-group';
   private readonly ENV_IS_VALID = 'is-valid';
