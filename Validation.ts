@@ -28,7 +28,7 @@ class Validation {
       return [...new Set(result)];
     };
     const noInputForValidation = (): boolean => {
-      const inputsForValidation = document.querySelectorAll('input[data-validation="true"]') as NodeListOf<HTMLInputElement>;
+      const inputsForValidation = document.querySelectorAll(`input[${this.ENV_DATA_VALIDATION_GROUP}]`) as NodeListOf<HTMLInputElement>;
       return inputsForValidation?.length === 0;
     };
     const anyInvalidOptions = (groupNames: string[]): boolean => {
