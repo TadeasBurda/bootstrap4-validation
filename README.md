@@ -1,7 +1,7 @@
 <h1>Dokumentácia</h1>
 
 <h2>Pripojenie</h2>
-<p>Na input nastav <strong>data-validation="true"</strong> a <strong>data-validation-group="<i>{{názov grupy inputs & buttons}}</i>"</strong>.</p>
+<p>Na input nastav <strong>data-validation-group="<i>{{názov grupy inputs & buttons}}</i>"</strong>.</p>
 <p>Ďalej je nutne pridať <strong>data-validation-group="<i>{{názov grupy}}</i>"</strong> aspoň pre jeden button.</p>
 <p>Do body pridaj div z <strong>data-validation-for="<i>{{id validovaného inputu}}</i>"</strong> a v tvojom main.js súbore, vytvor inštanciu Validation.ts(stačí jedna na celú page) a zavolaj initialize().</p>
 
