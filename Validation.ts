@@ -7,28 +7,25 @@ class Validation {
 
   private _groupNames: string[] = [];
 
-  private _getInputsForGroupName(groupName: string): NodeListOf<HTMLInputElement> {
-    return document.querySelectorAll(`input[${this.ENV_DATA_VALIDATION_GROUP}="${groupName}"]`) as NodeListOf<HTMLInputElement>;
+  private _getInputsForGroupName(groupName: string): NodeListOf<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> {
+    return document.querySelectorAll(`[${this.ENV_DATA_VALIDATION_GROUP}="${groupName}"]:not(button)`) as NodeListOf<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   }
+
   private _getButtonsForGroupName(groupName: string): NodeListOf<HTMLButtonElement> {
     return document.querySelectorAll(`button[${this.ENV_DATA_VALIDATION_GROUP}="${groupName}"]`) as NodeListOf<HTMLButtonElement>;
   }
-
 
   initialize(): void {
     const getAllGroupNames = (): string[] => {
       let result: string[] = [];
 
-      const inputs = document.querySelectorAll(`input[${this.ENV_DATA_VALIDATION_GROUP}]`) as NodeListOf<HTMLInputElement>;
-      inputs.forEach(input => result.push(input.getAttribute(this.ENV_DATA_VALIDATION_GROUP)));
-
-      const buttons = document.querySelectorAll(`button[${this.ENV_DATA_VALIDATION_GROUP}]`) as NodeListOf<HTMLButtonElement>;
-      buttons.forEach(button => result.push(button.getAttribute(this.ENV_DATA_VALIDATION_GROUP)));
+      const elements = document.querySelectorAll(`input[${this.ENV_DATA_VALIDATION_GROUP}]`) as NodeListOf<HTMLElement>;
+      elements.forEach(element => result.push(element.getAttribute(this.ENV_DATA_VALIDATION_GROUP)));
 
       return [...new Set(result)];
     };
     const noInputForValidation = (): boolean => {
-      const inputsForValidation = document.querySelectorAll(`input[${this.ENV_DATA_VALIDATION_GROUP}]`) as NodeListOf<HTMLInputElement>;
+      const inputsForValidation = document.querySelectorAll(`[${this.ENV_DATA_VALIDATION_GROUP}]`) as NodeListOf<HTMLInputElement>;
       return inputsForValidation?.length === 0;
     };
     const anyInvalidOptions = (groupNames: string[]): boolean => {
@@ -46,7 +43,7 @@ class Validation {
       return false;
     }
     const setEvents = (groupNames: string[]): void => {
-      const setInputValidation = (input: HTMLInputElement, isValid: boolean): void => {
+      const setInputValidation = (input: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement, isValid: boolean): void => {
         input.classList.add(isValid ? this.ENV_IS_VALID : this.ENV_IS_INVALID);
         input.classList.remove(isValid ? this.ENV_IS_INVALID : this.ENV_IS_VALID);
       };
